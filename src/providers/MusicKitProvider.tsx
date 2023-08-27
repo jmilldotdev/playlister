@@ -13,7 +13,7 @@ interface IMusicKitContext {
   developerToken?: string;
   userToken?: string;
   authorize: () => void;
-  createPlaylist: () => void;
+  createPlaylist: (name: string, description: string) => Promise<string>;
 }
 
 const MusicKitContext = createContext<IMusicKitContext>({
@@ -21,7 +21,9 @@ const MusicKitContext = createContext<IMusicKitContext>({
   developerToken: undefined,
   userToken: undefined,
   authorize: () => {},
-  createPlaylist: () => {},
+  createPlaylist: (name: string, description: string) => {
+    return new Promise(() => {});
+  },
 });
 
 export const MusicKitProvider = ({ children }: PropsWithChildren) => {

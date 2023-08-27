@@ -61,6 +61,6 @@ export default async function handler(
     });
   } catch (err) {
     console.error("Error decoding JSON: ", err);
-    res.status(500).json({ statusCode: 500, message: err.message });
+    res.status(500).json({ statusCode: 500, message: "error" });
   }
 }
