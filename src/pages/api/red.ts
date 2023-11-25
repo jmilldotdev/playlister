@@ -48,10 +48,14 @@ export default async function handler(
     // Parse response data
     const albums: string[] = [];
     for (const tg of data.response.torrentgroups) {
-      const album = tg.name;
-      const artist = tg.musicInfo.artists[0].name;
-      const decoded = he.decode(decodeURIComponent(album));
-      albums.push(`${artist} - ${decoded}`);
+      try {
+        const album = tg.name;
+        const artist = tg.musicInfo.artists[0].name;
+        const decoded = he.decode(decodeURIComponent(album));
+        albums.push(`${artist} - ${decoded}`);
+      } catch (err) {
+        console.error("Error decoding album: ", err);
+      }
     }
 
     res.status(200).json({

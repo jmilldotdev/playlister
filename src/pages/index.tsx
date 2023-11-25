@@ -29,6 +29,7 @@ export default function Home() {
   const fetchCollage = async () => {
     if (!collageId) return;
     try {
+      console.log(collageId);
       const res = await axios.post(`/api/red`, {
         collageId,
       });
@@ -91,10 +92,10 @@ export default function Home() {
       <button
         className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
         onClick={authorize}
+        disabled={userToken}
       >
-        Authorize
+        {userToken ? "Authorized" : "Authorize"}
       </button>
-      <div>{userToken}</div>
       <input
         className="border border-gray-400 rounded p-2 text-black"
         placeholder="Collage ID"
